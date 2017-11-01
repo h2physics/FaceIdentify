@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">FaceIdentify</string>
+    <string name="name">Face Identify</string>
+    <string name="capture">Capture</string>
+
+    <string name="information_title">Actor Information</string>
+    <string name="movie_title">Hottest films</string>
+    <string name="career">Career</string>
+    <string name="description">Description</string>
+    <string name="birthday">Birthday</string>
+    <string name="birthplace">Birth Place</string>
+</resources>
