@@ -86,6 +86,9 @@ public class Actor {
         @SerializedName("year")
         @Expose
         private String mYear;
+        @SerializedName("imdb_id")
+        @Expose
+        private String mId;
         @SerializedName("title")
         @Expose
         private String mTitle;
@@ -98,17 +101,14 @@ public class Actor {
             return mYear;
         }
 
+        public String getId() {
+            return mId;
+        }
+
         public String getTitle() {
             return mTitle;
         }
 
-        @Override
-        public String toString() {
-            return "Film{" +
-                    "mUrl='" + mUrl + '\'' +
-                    ", mYear='" + mYear + '\'' +
-                    ", mTitle='" + mTitle + '\'' +
-                    '}';
-        }
+
     }
 }

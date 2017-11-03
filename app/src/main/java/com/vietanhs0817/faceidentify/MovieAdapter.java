@@ -11,6 +11,9 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.vietanhs0817.faceidentify.model.Actor;
+import com.vietanhs0817.faceidentify.model.Movie;
+import com.vietanhs0817.faceidentify.network.Callback;
+import com.vietanhs0817.faceidentify.network.NetworkManagement;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,42 +74,25 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
             imvPoster.setOnClickListener(this);
         }
 
-        public void bind(Actor.Film film, int position){
-            switch (position){
-                case 0: {
-                    imvPoster.setImageResource(R.drawable.movie_1);
-                    break;
-                }
-                case 1: {
-                    imvPoster.setImageResource(R.drawable.movie_2);
-                    break;
-                }
-                case 2: {
-                    imvPoster.setImageResource(R.drawable.movie_3);
-                    break;
-                }
-                case 3: {
-                    imvPoster.setImageResource(R.drawable.movie_4);
-                    break;
-                }
-                case 4: {
-                    imvPoster.setImageResource(R.drawable.movie_5);
-                    break;
-                }
-                case 5: {
-                    imvPoster.setImageResource(R.drawable.movie_6);
-                    break;
-                }
-                case 6: {
-                    imvPoster.setImageResource(R.drawable.movie_7);
-                    break;
-                }
-                case 7: {
-                    imvPoster.setImageResource(R.drawable.movie_8);
-                    break;
+        public void bind(final Actor.Film film, final int position){
+
+            NetworkManagement.getMovie(mContext, film.getId(), new Callback<Movie>() {
+                @Override
+                public void onSuccess(Movie movie) {
+                    if (movie != null){
+                        Log.e("URL", position + ": " + mContext.getResources().getString(R.string.base_url_image) + movie.getPosterPath());
+                        Glide.with(mContext)
+                                .load(mContext.getResources().getString(R.string.base_url_image) + movie.getPosterPath())
+                                .into(imvPoster);
+                    }
                 }
 
-            }
+                @Override
+                public void onFailed() {
+
+                }
+            });
+
             tvTitle.setText(film.getTitle());
         }
 

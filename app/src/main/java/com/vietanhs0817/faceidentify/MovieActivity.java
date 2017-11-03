@@ -73,7 +73,7 @@ public class MovieActivity extends AppCompatActivity implements MovieAdapter.OnI
             final String personName = intent.getStringExtra("person");
             final ProgressDialog dialog = new ProgressDialog(this);
             dialog.show();
-            NetworkManagement.getActors(personName, new Callback() {
+            NetworkManagement.getActors(this, personName, new Callback<Actor>() {
                 @Override
                 public void onSuccess(Actor actors) {
                     mActor = actors;
@@ -90,7 +90,7 @@ public class MovieActivity extends AppCompatActivity implements MovieAdapter.OnI
                     tvCareer.setText(career.substring(0, career.length() - 2));
                     tvDescription.setText(mActor.getDescription());
                     List<Actor.Film> films = mActor.getFilms().getList();
-                    List<Actor.Film> subFilms = films.subList(0, 8);
+                    List<Actor.Film> subFilms = films.subList(0, 10);
                     mAdapter.setData(subFilms);
                     Log.e(LOG_TAG, mAdapter.getItemCount() + "");
                     rvMovie.setAdapter(mAdapter);

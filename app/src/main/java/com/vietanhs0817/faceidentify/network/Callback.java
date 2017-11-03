@@ -8,7 +8,7 @@ import java.util.List;
  * Created by YukiNoHara on 11/1/2017.
  */
 
-public interface Callback {
-    void onSuccess(Actor actors);
+public interface Callback<T> {
+    void onSuccess(T t);
     void onFailed();
 }

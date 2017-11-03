@@ -9,4 +9,9 @@
     <string name="description">Description</string>
     <string name="birthday">Birthday</string>
     <string name="birthplace">Birth Place</string>
+
+    <string name="base_url_imdb">http://www.theimdbapi.org/api/find/</string>
+    <string name="base_url_themoviedb">https://api.themoviedb.org/3/</string>
+    <string name="api_key">18dd9b3657f99393f26517cf02a08dbe</string>
+    <string name="base_url_image">http://image.tmdb.org/t/p/w185</string>
 </resources>

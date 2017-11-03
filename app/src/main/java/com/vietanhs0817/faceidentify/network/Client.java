@@ -21,14 +21,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Client {
     private static Retrofit retrofit;
     private static Client instance;
-    public static Client getInstance(){
-        if (instance == null){
-            instance = new Client();
-        }
+    public static Client getInstance(String baseUrl){
+        instance = new Client(baseUrl);
         return instance;
     }
 
-    private Client(){
+    private Client(String baseUrl){
         OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
             @Override
             public Response intercept(Chain chain) throws IOException {
@@ -44,7 +42,7 @@ public class Client {
             httpClientBuilder.addInterceptor(loggingInterceptor);
         }
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://www.theimdbapi.org/api/find/")
+                .baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create()).callFactory(httpClientBuilder.build()).build();
     }
     public <T> T create (final  Class<T> service){
